@@ -90,6 +90,7 @@ function houseOne(){
         }, 1000)
     })
 }
+
 function houseTwo(){
     return new Promise((resolve, reject) => {
         setTimeout(() => {
@@ -97,6 +98,7 @@ function houseTwo(){
         }, 5000)
     })
 }
+
 function houseThree(){
     return new Promise((resolve, reject) => {
         setTimeout(() => {
@@ -147,12 +149,11 @@ async function getPaid(){
     console.log(houseTwoWait)
     console.log(houseThreeWait)
 }
-
 getPaid()
 
 
 
-//Code 08 --- Adding a try and catch block
+//Code 08 --- Making the asyn/await more readable to Javascript standard
 async function getACuteDogPhoto(){
     const res = await fetch('https://dog.ceo/api/breeds/image/random')
     const data = await res.json()
@@ -160,3 +161,20 @@ async function getACuteDogPhoto(){
 }
 getACuteDogPhoto()
 
+
+//Code 09 --- Adding a try and catch block to code 08
+async function getACuteDogPhoto() {
+    try {
+        const res = await fetch('https://dog.ceo/api/breeds/image/random')
+        if (!res.ok){
+        throw new Error(`HTTP error: ${res.status}`)
+    }
+    const data = await res.json();
+    console.log(data)
+    }
+    catch (error){
+        console.log(`could not get products: ${error}`)
+    }
+}
+
+getACuteDogPhoto()
